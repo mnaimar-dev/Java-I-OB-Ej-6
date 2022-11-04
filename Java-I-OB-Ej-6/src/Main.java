@@ -1,5 +1,9 @@
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class Main {
@@ -120,15 +124,47 @@ public class Main {
                     System.out.println("No se puede realizar debido al error: " + e.getMessage());
                 }
 
+                // 10. 
+
         }
             // 9. Crea una función DividePorCero. Esta, debe generar una excepción ("throws") a su
             // llamante del tipo ArithmeticException que será capturada por su llamante (desde "main", por ejemplo).
             // Si se dispara la excepción, mostraremos el mensaje "Esto no puede hacerse".
             // Finalmente, mostraremos en cualquier caso: "Demo de código".
 
-            public static int DividePorCero(int i){
-                return i / 0;
-            };
+                public static int DividePorCero(int i){
+                    return i / 0;
+                }
 
-        
+            // 10 .Utilizando InputStream y PrintStream, crea una función que reciba dos parámetros:
+            // "fileIn" y "fileOut". La tarea de la función será realizar la copia del fichero dado en el
+            // parámetro "fileIn" al fichero dado en "fileOut".
+
+                public static class CopiarFicheros {
+
+                    public static void main(String[] args) {
+
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.println("Introduce el fichero de origen: ");
+                        String fileIn = scanner.nextLine();
+                        System.out.println("Introduce el fichero de destino: ");
+                        String fileOut = scanner.nextLine();
+                        copiar(fileIn, fileOut);
+                    }
+
+                    private static void copiar(String fileIn, String fileOut) {
+                        try {
+                            InputStream in = new FileInputStream(fileIn);
+                            byte[] datos = in.readAllBytes();
+                            in.close();
+
+                            PrintStream out = new PrintStream(fileOut);
+                            out.write(datos);
+                            out.close();
+                        } catch (Exception e) {
+                            System.out.println("Excepcion: " + e.getMessage());
+                        }
+                    }
+
+        }
     }
